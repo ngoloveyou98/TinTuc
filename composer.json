@@ -41,7 +41,9 @@
             "database/factories"
         ],
         "files": [
-            "app/function/function.php"
+            "app/function/function.php",
+            "app/function/vitoen.php",
+            "app/function/convert.php"
         ]
     },
     "autoload-dev": {

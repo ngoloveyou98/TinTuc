@@ -18,9 +18,16 @@ use App\TheLoai;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('demo', function () {
+    return 'hello';
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'theloai'], function () {
         Route::get('danhsach','TheLoaiController@getDanhSach');
+        Route::get('danhsachxoa', 'TheLoaiController@getDanhsachxoa');
+        Route::get('danhsachxoa/xoa/{id}','TheLoaiController@getXoaVV') ;
+        Route::get('danhsachxoa/restore/{id}','TheLoaiController@getRestore') ;
 
         Route::get('sua/{id}','TheLoaiController@getSua');
         Route::post('sua/{id}','TheLoaiController@postSua');
@@ -30,24 +37,34 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('them','TheLoaiController@postThem');
 
         Route::get('xoa/{id}','TheLoaiController@getXoa');
-        
+
 
 
     });
     Route::group(['prefix' => 'loaitin'], function () {
-        Route::get('danhsach','TheLoaiController@getDanhSach');
+        Route::get('danhsach','LoaiTinController@getDanhSach');
+        Route::get('danhsachxoa','LoaiTinController@getDanhSachXoa');
+        Route::get('danhsachxoa/xoa/{id}','LoaiTinController@getXoaVV') ;
+        Route::get('danhsachxoa/restore/{id}','LoaiTinController@getRestore') ;
 
-        Route::get('sua','TheLoaiController@getSua');
+        Route::get('sua/{id}','LoaiTinController@getSua');
+        Route::post('sua/{id}','LoaiTinController@postSua');
 
-        Route::get('them','TheLoaiController@getThem');
+
+        Route::get('them','LoaiTinController@getThem');
+        Route::post('them','LoaiTinController@postThem');
+
+        Route::get('xoa/{id}','LoaiTinController@getXoa');
+
+        
 
     });
     Route::group(['prefix' => 'tintuc'], function () {
-        Route::get('danhsach','TheLoaiController@getDanhSach');
+        Route::get('danhsach','TinTucController@getDanhSach');
 
-        Route::get('sua','TheLoaiController@getSua');
+        Route::get('sua','TinTucController@getSua');
 
-        Route::get('them','TheLoaiController@getThem');
+        Route::get('them','TinTucController@getThem');
         
 
     });

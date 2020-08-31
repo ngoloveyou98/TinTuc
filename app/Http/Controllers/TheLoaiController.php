@@ -35,8 +35,10 @@ class TheLoaiController extends Controller
         $theloai->Ten = $request->Ten;
         $theloai->TenKhongDau = changeTitle($request->Ten);
         // echo changeTitle($request->Ten);
+        // echo $request->Ten;
         $theloai->save();
-        return redirect('admin/theloai/them')->with('thongbao','Đã Thêm thành công');
+        return redirect('admin/theloai/them')
+        ->with('thongbao','Đã Thêm thành công');
 
     }
     public function getSua($id)
@@ -67,5 +69,24 @@ class TheLoaiController extends Controller
     {
         TheLoai::where('id',$id)->delete();
         return redirect('admin/theloai/danhsach')->with('thongbao','Đã xóa thành công');
+    }
+
+    // danh sach xoa
+    public function getDanhsachxoa()
+    {
+        $theloai = TheLoai::onlyTrashed()->get();
+        return view('admin.theloai.danhsachxoa',['theloai'=>$theloai]);
+    }
+
+    public function getXoaVV($id)
+    {
+        TheLoai::withTrashed()->where('id',$id)->forceDelete();
+        return redirect('admin/theloai/danhsachxoa')->with('thongbao','Đã xóa thành công');
+    }
+
+    public function getRestore($id)
+    {
+        TheLoai::withTrashed()->where('id',$id)->restore();
+        return redirect('admin/theloai/danhsachxoa')->with('thongbaoRestore','Khôi phục thành công');
     }
 }
