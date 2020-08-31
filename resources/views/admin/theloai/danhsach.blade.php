@@ -31,7 +31,7 @@
                         <td>{{ $tl->Ten }}</td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/theloai/xoa/{{ $tl->id}}"> Delete</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/theloai/sua/{{ $tl->id }}">Edit</a></td>
-                    </tr>
+                     </tr>
                       @endforeach
                       
                       
