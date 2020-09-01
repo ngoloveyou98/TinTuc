@@ -21,6 +21,11 @@
                         {{ session('loixoa') }}
                   </div>
               @endif
+              @if (session('thongbaoRestore'))
+                  <div class="alert alert-success">
+                        {{ session('thongbaoRestore') }}
+                  </div>
+              @endif
                 <thead>
                     <tr align="center">
                         <th>ID</th>
@@ -58,8 +63,8 @@
                         </td>
                         <td>{{$tt->SoLuotXem}}</td>
 
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Edit</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/danhsachxoa/xoa/{{$tt->id}}"> Xóa</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/danhsachxoa/khoiphuc/{{$tt->id}}">Khôi phục</a></td>
                     </tr>
                     @endforeach
 

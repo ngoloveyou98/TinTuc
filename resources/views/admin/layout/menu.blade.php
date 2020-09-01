@@ -54,6 +54,9 @@
                     <li>
                         <a href="admin/tintuc/them">Thêm</a>
                     </li>
+                    <li>
+                        <a href="admin/tintuc/danhsachxoa">Danh sách Xóa</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

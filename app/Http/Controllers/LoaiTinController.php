@@ -9,7 +9,8 @@ class LoaiTinController extends Controller
 {
     public function getDanhSach()
     {
-        $loaitin = LoaiTin::all();
+        $loaitin = LoaiTin::with('TheLoai')->get();
+        // dd($loaitin);
        return view('admin.loaitin.danhsach',['loaitin'=>$loaitin]); 
     }
     
@@ -71,8 +72,14 @@ class LoaiTinController extends Controller
     }
     public function getXoa($id)
     {
-        LoaiTin::where('id',$id)->delete();
-        return redirect('admin/loaitin/danhsach')->with('thongbao','đã xóa thành công');
+        $loaitin = LoaiTin::find($id);
+        if(!isset($loaitin->tintuc)){
+            LoaiTin::where('id',$id)->delete();
+            return redirect('admin/loaitin/danhsach')->with('thongbao','đã xóa thành công');
+        }else {
+            return redirect('admin/loaitin/danhsach')->with('thongbao','Không được xóa');
+        }
+        
     } 
 
     // danh sach xoa
