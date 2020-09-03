@@ -8,6 +8,7 @@ class TheLoai extends Model
 {
     use SoftDeletes;
     protected $table = 'theloai';
+    
     public function loaitin(){
         return $this->hasMany('App\LoaiTin' , 'idTheLoai','id');
      }

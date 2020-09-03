@@ -50,7 +50,7 @@ class TheLoaiController extends Controller
     {
         $this->validate($request,
         [
-            'Ten'=>'required| unique:TheLoai,Ten|min:2|max:100'
+            'Ten'=>'required|unique:TheLoai,Ten|min:2|max:100'
         ],
         [
             'Ten.required' => 'Bạn chưa nhập tên thể loại',
@@ -67,8 +67,15 @@ class TheLoaiController extends Controller
     }
     public function getXoa($id)
     {
-        TheLoai::where('id',$id)->delete();
-        return redirect('admin/theloai/danhsach')->with('thongbao','Đã xóa thành công');
+        //$theloai = TheLoai::where('id',$id)->with('loaitin')->get();
+        $theloai = TheLoai::find($id);
+        // dd($theloai);
+        if(!isset($theloai->loaitin)){
+            TheLoai::where('id',$id)->delete();
+            return redirect('admin/theloai/danhsach')->with('thongbao','Đã xóa thành công');
+        }else{
+            return redirect('admin/theloai/danhsach')->with('thongbao','không được xóa');
+        }
     }
 
     // danh sach xoa
@@ -80,8 +87,14 @@ class TheLoaiController extends Controller
 
     public function getXoaVV($id)
     {
-        TheLoai::withTrashed()->where('id',$id)->forceDelete();
-        return redirect('admin/theloai/danhsachxoa')->with('thongbao','Đã xóa thành công');
+        $theloai = TheLoai::find($id);
+        if(!isset($theloai->loaitin)){
+            TheLoai::withTrashed()->where('id',$id)->forceDelete();
+            return redirect('admin/theloai/danhsachxoa')->with('thongbao','Đã xóa thành công');
+         }else {
+            return redirect('admin/theloai/danhsachxoa')->with('thongbao','Không được xóa');
+
+         }
     }
 
     public function getRestore($id)

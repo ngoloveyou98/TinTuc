@@ -9,6 +9,8 @@ class LoaiTin extends Model
 {
     use SoftDeletes;
     protected $table = 'loaitin';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id','idTheLoai','Ten','TenKhongDau']; 
     public function tintuc(){
         return $this->hasMany('App\TinTuc','idLoaiTin','id');
     }
