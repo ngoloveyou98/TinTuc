@@ -31,7 +31,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="admin/loaitin/loaitin"><i class="fa fa-cube fa-fw"></i> Loại Tin<span class="fa arrow"></span></a>
+                <a href="admin/loaitin/danhsach"><i class="fa fa-cube fa-fw"></i> Loại Tin<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="admin/loaitin/danhsach">Danh Sách</a>
@@ -46,7 +46,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> Tin Tức<span class="fa arrow"></span></a>
+                <a href="admin/tintuc/danhsach"><i class="fa fa-users fa-fw"></i> Tin Tức<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="admin/tintuc/danhsach">Danh sách</a>
@@ -56,6 +56,36 @@
                     </li>
                     <li>
                         <a href="admin/tintuc/danhsachxoa">Danh sách Xóa</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="admin/loaitin/loaitin"><i class="fa fa-cube fa-fw"></i>Slide<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/slide/danhsach">Danh Sách</a>
+                    </li>
+                    <li>
+                        <a href="admin/slide/them">Thêm</a>
+                    </li>
+                    <!-- <li>
+                        <a href="admin/slide/danhsachxoa">Danh sách xóa</a>
+                    </li> -->
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="admin/tintuc/danhsach"><i class="fa fa-users fa-fw"></i>Users<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/user/danhsach">Danh sách</a>
+                    </li>
+                    <li>
+                        <a href="admin/user/them">Thêm</a>
+                    </li>
+                    <li>
+                        <a href="admin/user/danhsachxoa">Danh sách Xóa</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

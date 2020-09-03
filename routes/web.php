@@ -73,11 +73,46 @@ Route::group(['prefix' => 'admin'], function () {
 
 
         Route::get('xoa/{id}','TinTucController@getXoa');
-        
+        Route::get('comment/xoa/{id}/{idTinTuc}', 'TinTucController@getDelComment');
         
     });
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('loaitin/{idTheLoai}', "AjaxController@getLoaiTin");
     });
-    
+    Route::group(['prefix' => 'slide'], function () {
+        Route::get('danhsach','SlideController@getDanhSach');
+        Route::get('danhsachxoa','SlideController@getDanhSachXoa');
+        Route::get('danhsachxoa/xoa/{id}','SlideController@getXoaVV') ;
+        Route::get('danhsachxoa/khoiphuc/{id}','SlideController@getRestore') ;
+        Route::get('sua/{id}','SlideController@getSua')
+        ;
+        Route::post('sua/{id}','SlideController@postSua');
+
+        Route::get('them','SlideController@getThem');
+        Route::post('them','SlideController@postThem');
+
+
+        Route::get('xoa/{id}','SlideController@getXoa');
+        
+        
+    });
+
+//user
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('danhsach','UserController@getDanhSach');
+        Route::get('danhsachxoa','UserController@getDanhSachXoa');
+        Route::get('danhsachxoa/xoa/{id}','UserController@getXoaVV') ;
+        Route::get('danhsachxoa/khoiphuc/{id}','UserController@getRestore') ;
+        
+        Route::get('sua/{id}','UserController@getSua');
+        Route::post('sua/{id}','UserController@postSua');
+
+        Route::get('them','UserController@getThem');
+        Route::post('them','UserController@postThem');
+
+
+        Route::get('xoa/{id}','UserController@getXoa');
+        
+        
+    });
 });

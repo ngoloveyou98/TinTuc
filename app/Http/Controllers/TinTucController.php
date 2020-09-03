@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LoaiTin;
 use App\TheLoai;
 use App\TinTuc;
+use App\Comment;
 class TinTucController extends Controller
 {
     public function getDanhSach()
@@ -125,16 +126,8 @@ class TinTucController extends Controller
     }
     public function getXoa($id)
     {
-        $tintuc = TinTuc::find($id);
-        if(!isset($tintuc->comment)){
-            return redirect('admin/tintuc/danhsach')->with('thongbao',"xóa thành công");
-            $tintuc->delete();
-
-        }else{
-            // $tintuc->delete();
-            return redirect('admin/tintuc/danhsach')->with('loixoa','xóa thành công');
-            
-        }
+        $tintuc = TinTuc::where('id',$id)->delete();
+        return redirect('admin/tintuc/danhsach')->with('thongbao',"xóa thành công");
     } 
 
     // danh sach xoa
@@ -146,14 +139,10 @@ class TinTucController extends Controller
 
     public function getXoaVV($id)
     {
-        $tintuc = TinTuc::find($id);
-        if(count($tintuc->comment)==0){
+       
             Tintuc::withTrashed()->where('id',$id)->forceDelete();
             return redirect('admin/tintuc/danhsachxoa')->with('thongbao','Đã xóa thành công');
-         }else {
-            return redirect('admin/tintuc/danhsachxoa')->with('loixoa','Không được xóa');
-
-         }
+    
     }
 
     public function getRestore($id)
@@ -161,5 +150,12 @@ class TinTucController extends Controller
         
         TinTuc::withTrashed()->where('id',$id)->restore();
         return redirect('admin/tintuc/danhsachxoa')->with('thongbaoRestore','Khôi phục thành công');
+    }
+
+    // del comment
+    public function getDelComment($id,$idTinTuc)
+    {
+        Comment::find($id)->delete();
+        return redirect('admin/tintuc/sua/'.$idTinTuc)->with('thongbao','Đã Xóa thành công');
     }
 }

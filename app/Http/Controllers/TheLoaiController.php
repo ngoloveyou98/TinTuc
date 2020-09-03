@@ -22,10 +22,11 @@ class TheLoaiController extends Controller
     {
         $this->validate($request,
         [
-            'Ten' => 'required|min:2|max:100'
+            'Ten' => 'required|min:2|max:100|unique:TheLoai,Ten'
         ],
         [
             'Ten.required' => 'Bạn chưa nhập tên thể loại',
+            'Ten.unique'=>'Tên thể loại đã có trong hệ thống',
             'Ten.min' => 'Tên thể loại phải nhiều hơn 2 kí tự',
             'Ten.max' => 'Tên thể loại phải ít  hơn 100 kí tự',
 

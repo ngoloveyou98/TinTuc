@@ -44,8 +44,8 @@
                             {{-- <img width="100px" src="uploai/tintuc/8.jpg"> --}}
                         </td>
                         <td>{{$tt->TomTat}}</td>
-                        <td>{{$tt->loaitin->Ten}}</td>
-                        <td>{{$tt->loaitin->theloai->Ten}}</td>
+                        <td>{{$tt->loaitin->Ten ?? " "}}</td>
+                        <td>{{$tt->loaitin->theloai->Ten ?? " "}}</td>
                         <td>
                              <img width="100px" src="upload/tintuc/{{ $tt->Hinh }}"> 
                         </td>
