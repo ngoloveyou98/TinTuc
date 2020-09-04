@@ -5,8 +5,8 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-lg-12">
-                  <h1 class="page-header">User
-                      <small>Danh sách</small>
+                  <h1 class="page-header">Danh sách
+                      <small>Xóa</small>
                   </h1>
               </div>
               <!-- /.col-lg-12 -->
@@ -39,8 +39,8 @@
                                 {{ 'Admin' }}
                             @endif
                         </td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/xoa/{{ $u->id}}"> Xóa</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/sua/{{ $u->id }}">Sửa</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/danhsachxoa/xoa/{{ $u->id}}"> Xóa hẳn</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/danhsachxoa/khoiphuc/{{ $u->id }}">Khôi phục</a></td>
                      </tr>
                       @endforeach
                       

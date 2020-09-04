@@ -72,13 +72,10 @@ class LoaiTinController extends Controller
     }
     public function getXoa($id)
     {
-        $loaitin = LoaiTin::find($id);
-        if(!isset($loaitin->tintuc)){
+      
             LoaiTin::where('id',$id)->delete();
             return redirect('admin/loaitin/danhsach')->with('thongbao','đã xóa thành công');
-        }else {
-            return redirect('admin/loaitin/danhsach')->with('thongbao','Không được xóa');
-        }
+        
         
     } 
 

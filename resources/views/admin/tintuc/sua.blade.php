@@ -103,6 +103,53 @@
                     </div>
                 </div>
                 <!-- /.row -->
+                {{-- comment --}}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Coment
+                            <small>Danh sách</small>
+                        </h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        @if (session('thongbao'))
+                            <div class="alert alert-success">
+                                    {{ session('thongbao') }}
+                            </div>
+                        @endif
+                        @if (session('loixoa'))
+                          <div class="alert alert-danger">
+                                {{ session('loixoa') }}
+                          </div>
+                      @endif
+                        <thead>
+                            <tr align="center">
+                                <th>ID</th>
+                                <th>Người dùng</th>
+                                <th>Nội dung</th>
+                                <th>Thời gian Coment</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tintuc->comment as $cm)
+                            <tr class="odd gradeX" align="center">
+                                <td>{{$cm->id}}</td>
+                                <td>
+                                    <p>{{$cm->user->name}}</p>
+                                    {{-- <img width="100px" src="uploai/tintuc/8.jpg"> --}}
+                                </td>
+                                <td>{{$cm->NoiDung}}</td>
+                                <td>{{$cm->create_at}}</td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/comment/xoa/{{$cm->id}}/{{ $tintuc->id }}"> Delete</a></td>
+                            </tr>
+                            @endforeach
+        
+        
+                        </tbody>
+                    </table>
+                </div>
+                {{-- endComment --}}
             </div>
             <!-- /.container-fluid -->
         </div>
