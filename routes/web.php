@@ -123,3 +123,23 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
 Route::get('homepages','PageController@getHomepages');
 Route::get('contact','PageController@getContact');
+Route::get('loaitin/{id}/{TenKhongDau}.html','PageController@getLoaiTin' );
+Route::get('tintuc/{id}/{TieuDeKhongDau}.html','PageController@getTinTuc');
+// Login
+Route::get('dangnhap','PageController@getDangNhap');
+Route::post('dangnhap','PageController@postDangNhap');
+// logout
+Route::get('dangxuat','PageController@getDangXuat');
+//Coment
+Route::post('comment/{id}','PageController@getComment');
+
+//User
+
+Route::get('user','PageController@getUser');
+Route::post('user','PageController@postUser');
+
+//Register
+Route::get('register', 'PageController@getRegister');
+Route::post('register', 'PageController@postRegister');
+
+

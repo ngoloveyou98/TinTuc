@@ -27,7 +27,7 @@
                             </div>
                         @endif
 
-                        <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
+                        <form action="admin/tintuc/sua/{{$tintuc->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Thể Loại</label>
