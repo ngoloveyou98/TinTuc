@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\LoaiTin;
 use App\TheLoai;
 use App\TinTuc;
@@ -103,19 +104,50 @@ class UserController extends Controller
     }
     public function getXoaVV($id)
     {
-        
+        User::withTrashed()->where('id',$id)->forceDelete();
+        return redirect('admin/user/danhsachxoa')->with('thongbao','Đã xóa thành công');
     }
 
     public function getRestore($id)
     {
-        
-        
+      User::withTrashed()->where('id',$id)->restore();
+      return redirect("admin/user/danhsachxoa")->with('thongbao','Đã khôi phục thành công');   
     }
 
-    // del comment
-    public function getDelComment($id,$idTinTuc)
+    
+
+// Login
+    public function getLogin()
     {
-        Comment::find($id)->delete();
-        return redirect('admin/tintuc/sua/'.$idTinTuc)->with('thongbao','Đã Xóa thành công');
+      # code...
+      return view('admin.login');
+    }
+    public function postLogin(Request $request)
+    {
+      $this->validate($request,
+      [
+          'email'=>'required',
+          'password'=>'required|min:3|max:20"'
+      ],
+      [
+          'email.required'=>'Bạn chưa nhập Email',
+          'password.required'=>'Bạn chưa nhập mật khẩu',
+          'password.min'=>'Mẩu khẩu phải từ 3-20 kí tự',
+          'password.max'=>'Mẩu khẩu phải từ 3-20 kí tự'
+      ]);
+      $email = $request->email;
+      $password = $request->password;
+      if(Auth::attempt(['email' => $email, 'password' => $password])){
+          return redirect('admin/theloai/danhsach');
+      }else{
+          return redirect('admin/login')->with('loi','Tên đăng nhập hoặc mật khẩu không đúng');
+      }
+    }
+
+    //logout
+    public function getLogout()
+    {
+      Auth::logout();
+      return redirect('admin/login');
     }
 }
