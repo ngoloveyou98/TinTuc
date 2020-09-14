@@ -84,7 +84,7 @@ class UserController extends Controller
                     'passwordAgain.same'=>'Mật khẩu nhập lại chưa khớp'
                   ]);
 
-                $user->password = $request->password;
+                $user->password = bcrypt($request->password);
             }
             $user->save();
             return redirect('admin/user/danhsach')->with('thongbao','Đã sửa thành công');

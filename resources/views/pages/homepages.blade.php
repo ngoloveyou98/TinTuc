@@ -23,10 +23,9 @@
                     @if(count($tl->loaitin) >0)
                         <div class="row-item row">
                         <h3>
-                            <a href="category.html">{{ $tl->Ten }}</a>|
-
+                            <a href="#">{{ $tl->Ten }}</a>|
                             @foreach($tl->loaitin as $lt)
-                            <small><a href="category.html"><i>{{ $lt->Ten }}</i></a>/</small>
+                            <small><a href="loaitin/{{$lt->id}}/{{ $lt->TenKhongDau }}.html"><i>{{ $lt->Ten }}</i></a>/</small>
 
                             @endforeach
 
@@ -34,54 +33,41 @@
                         <?php 
                             $data = $tl->tintuc->where('NoiBat',1)->sortByDesc('created_at')->take(5);
                             $tin1 = $data->shift();
-                            dd($tin1);
+                            
                         ?>
                     
                         <div class="col-md-8 border-right">
                             <div class="col-md-5">
-                                <a href="detail.html">
+                                <a @if(isset($tin1['id']) && isset($tin1['TieuDeKhongDau']))
+                                    href="tintuc/{{ $tin1->id }}/{{ $tin1['TieuDeKhongDau'] }}.html"
+                                @endif>
                                     <img class="img-responsive" src="upload/tintuc/{{ $tin1['Hinh'] ?? "" }}" alt="">
                                 </a>
                             </div>
 
                             <div class="col-md-7">
-                                <h3>{{$tin1['TieuDe']}}</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima,
-                                    inventore voluptatum saepe quos nostrum provident .</p>
-                                <a class="btn btn-primary" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                <h3>{{$tin1['TieuDe'] ?? "  "}}</h3>
+                                <p>{{ $tin1['TomTat'] ?? "  "}}</p>
+                                <a class="btn btn-primary" 
+                                    @if(isset($tin1['id']) && isset($tin1['TieuDeKhongDau']))
+                                        href="tintuc/{{ $tin1->id }}/{{ $tin1['TieuDeKhongDau'] }}.html"
+                                    @endif>
+                                    Xem Thêm <span class="glyphicon glyphicon-chevron-right"></span></a>
                             </div>
 
                         </div>
 
 
                         <div class="col-md-4">
-                            <a href="detail.html">
+                            @foreach($data->all() as $tt)
+                                <a href="tintuc/{{ $tt->id }}/{{ $tt->TieuDeKhongDau }}.html">
                                 <h4>
                                     <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    {{ $tt->TieuDe }}
                                 </h4>
                             </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
-
-                            <a href="detail.html">
-                                <h4>
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </h4>
-                            </a>
+                            @endforeach
+                              
                         </div>
 
                         <div class="break"></div>

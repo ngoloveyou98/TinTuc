@@ -103,14 +103,14 @@ class TinTucController extends Controller
          $tintuc->TomTat = $request->TomTat;
          $tintuc->NoiDung = $request->NoiDung;
          $tintuc->idLoaiTin = $request->LoaiTin;
-         $tintuc->SoLuotXem = 0;
+         
          $tintuc->NoiBat = $request->NoiBat;
          if($request->hasFile('Hinh')){
              $file = $request->file('Hinh');
              $name = $file->getClientOriginalName();
              $duoi = $file->getClientOriginalExtension();
              if($duoi != 'png' && $duoi != 'jpg' && $duoi != 'jpeg'){
-                 return redirect('admin/tintuc/them')->with('loi','bạn chỉ được chọn 1 trong các file: png jpg jpeg');
+                 return redirect('admin/tintuc/sua/'.$id)->with('loi','bạn chỉ được chọn 1 trong các file: png jpg jpeg');
              }
              $hinh = time()."_$name";
              // while(file_exists('upload/tintic/'.$hinh)){
@@ -122,7 +122,7 @@ class TinTucController extends Controller
  
          }
          $tintuc->save();
-         return redirect('admin/tintuc/sua')->with('thongbao','Đã sửa thành công');
+         return redirect('admin/tintuc/sua/'.$id)->with('thongbao','Đã sửa thành công');
     }
     public function getXoa($id)
     {
